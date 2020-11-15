@@ -1,0 +1,13 @@
+<!-- Modal content -->
+<div class="modal-content">
+    <button style="margin-left: 2%; display:block-inline;" onclick = getDict(this,"down")>Cofnij</button>
+    <button style="margin-left: 2%; display:block-inline;" onclick = newFile(this)>Nowy</button>
+    <span class="close_modal">&times;</span>
+    <br>
+    {% for katalog in katalogi %}
+      <button onclick = getDict(this,"up") class="modal-content">{{ katalog }}</button>
+    {% endfor %}
+    {% for plik in pliki %}
+      <button onclick = getFile(this) class="modal-content">{{ plik }}</button>
+    {% endfor %}
+</div>

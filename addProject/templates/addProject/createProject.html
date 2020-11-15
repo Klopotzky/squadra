@@ -1,0 +1,33 @@
+{% include 'pages/base2.html'  %}
+<!DOCTYPE html>
+<html>
+<header><title>Squadra</title></header>
+<body>
+
+    <br><br><br>
+<center><h1>dodaj projekt</h1></center>
+<center>
+
+</center>
+
+<p1>textt</p1>
+<p1>textt</p1>
+<p1>textt</p1>
+<p1>textt</p1>
+<p1>textt</p1>
+<p1>textt</p1>
+<h2>Sign up</h2>
+
+
+<center>
+  <select>
+    <option> -- Username -- </option>
+    {% for result in displayusername %}
+      <option>{{ result.username }}</option>
+    {% endfor %}
+  </select>
+
+</center>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+web: gunicorn squadra.wsgi --log-file -

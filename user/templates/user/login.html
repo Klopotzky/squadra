@@ -1,0 +1,29 @@
+{% load static %}
+
+{% include 'pages/base2.html'  %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/style_user.css' %}">
+
+
+<div class="container">
+    
+           <center> <img src="{% static "user/images/image18.png" %} "></center>
+            <div class="register1"><h2>Login</h2> </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                
+                {% for field in form %}
+                    <div class="field">
+                        <label for="{{ field.id_for_label }}" class="label">{{ field.html_name }}</label><br>
+                        {{ field }}
+                    
+                    </div>
+                {% endfor %}
+                <br><br>
+                <input type="submit" value="Zaloguj" class="button1">
+            </form>
+   
+    </div>
+
+
+</body>
+</html>
