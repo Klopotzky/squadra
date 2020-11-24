@@ -1,0 +1,28 @@
+{% load static %}
+
+{% include 'user/base2.html'  %}
+<link rel="stylesheet" type="text/css" href="{% static 'addProject/style1.css' %}">
+
+
+<div class="container">
+    
+           
+             <div class="register1"><h4>dodaj projekt </h4> </div><br>
+            <form action="" method="post">
+                {% csrf_token %}
+                    <div class="field">
+                        <input type="text" id="project_name" name="project_name">
+                    </div>
+                <br><br>
+                <input type="submit" value="dodaj" class="button1">
+                
+            </form>
+            <form method="get" action="/addProject">
+                <input type="submit" value="dodaj uprawnienia" class="button1">
+            </form>
+   
+    </div>
+
+
+</body>
+</html>
