@@ -8,6 +8,8 @@ urlpatterns = [
     path('ajax_open_file/', views.ajax_open_file, name='ajax_open_file'),
     path('add_file/', views.upload_file, name='upload_file'),
     path('new_file/', views.new_file, name='new_file'),
+    path('new_dir/', views.new_dir, name='new_dir'),
+    path('export_file/', views.export_file, name='export_file'),
 ]
 
 

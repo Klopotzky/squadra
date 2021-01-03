@@ -1,42 +1,60 @@
 {% load static %}
 
-{% include 'pages/base2.html'  %}
-<link rel="stylesheet" type="text/css" href="{% static 'user/style_user.css' %}">
+{% include 'user/header.html' %}
 
-       
-<div class="container">
-   
-    <center> <img src="{% static "user/images/image18.png" %} "></center>
-            <div class="register1"><h2>Register</h2>  </div>
-          
+<div id="login">
+    <div class="login-container">        
+        <div class="login-form">
+            <div class="logo">
+                <img src="{% static 'user/img/logo.png' %}" alt="SQUADRA">
+                <h1>SQUADRA</h1>
+            </div>
             <form action="" method="post">
                 {% csrf_token %}
-                
                 {% for field in form %}
-                    <div class="field">
-                        
-                        {% if  field.html_name == "username" %} user: 
-                        {% elif  field.html_name == "email" %} e-mail: 
-                        {% elif  field.html_name == "first_name" %} imie: 
-                        {% elif  field.html_name == "last_name" %} nazwisko: 
-                        {% elif  field.html_name == "password1" %} hasło: 
-                        {% elif  field.html_name == "password2" %} powtórz hasło: 
-                        
-                       
-                        {% else %}
-                        {{ field.html_name }}
-                        {% endif %}
-                        <label for="{{ field.id_for_label }}"  class="label"></label><br>
-                                           {{ field }}
-                       
-                  
+
+                {% if  field.html_name == "username" %}
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="username" placeholder="Nazwa użytkownika">
+                    </div>
+                {% endif %}
                 {% endfor %}
-            </div>
-                <br><br>
-                <input type="submit" value="Dołącz" class="button1">
-            </form>
-     
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <input type="email" name="email" placeholder="Email">
+                    </div>
+
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="first_name" placeholder="Imię">
+                    </div>
+
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="last_name" placeholder="Nazwisko">
+                    </div>
+
+                    <div class="input-with-icon">
+                        <i class="fas fa-unlock-alt"></i>
+                        <input type="password" name="password1" placeholder="Hasło">
+                    </div>
+
+                    <div class="input-with-icon">
+                        <i class="fas fa-unlock-alt"></i>
+                        <input type="password" name="password2" placeholder="Powtórz hasło">
+                    </div>
+                
+                <div>
+                    <input type="submit" value="Zarejestruj się">
+                </div>
+            </form>            
+        </div>
+        <div class="login-register">
+            Masz już konto? <a href="/login">Zaloguj się</a>
+        </div>
+    </div>
+    
 </div>
 
-</body>
-</html>
+{% include 'user/footer.html'  %}

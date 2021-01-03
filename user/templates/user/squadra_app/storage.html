@@ -1,0 +1,16 @@
+
+
+{% block content %}
+<div id="dictAndFile">
+    {% for katalog in katalogi %}
+        <button class="getDict" value="up">{{ katalog }}</button>
+    {% endfor %}
+
+    {% for plik in pliki %}
+        <br>
+        <button class="getFile">{{ plik }}</button>
+        <input type="checkbox" id="checkf" name="checkf" value={{plik}}>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% include 'user/header.html' %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+    <h2 class="title">Edytor</h2>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.text_app }}
+    </form>
+    <div class="form-actions">
+        <div class="button popup-open"><i class="fas fa-folder-open"></i> Otwórz</div>
+        <div class="button" id="saveFile"><i class="fas fa-save"></i> Zapisz</div>
+    </div>    
+
+    {% else %}
+    <div class="restricted">
+        <h2 class="title">Przepraszamy, nie posiadasz uprawnień do przeglądania tej strony.</h2>
+    </div>
+    
+    {% endif %}
+{% endblock %}
+
+{% include 'user/footer.html'  %}

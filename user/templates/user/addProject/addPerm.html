@@ -1,0 +1,34 @@
+{% include 'user/header.html' %}
+{% load static %}
+
+
+</style>
+</head>
+<link rel="stylesheet" type="text/css" href="{% static 'addProject/style1.css' %}">
+
+
+<div class="container">
+   
+           
+            <div class="register1"><h4>dodaj uprawnienia</h4> </div>
+            <form action="" method="post">
+                {% csrf_token %}
+               
+                {% for field in form %}
+                    <div class="field">
+                        <br><label for="{{ field.id_for_label }}" class="label">{{ field.html_name }}</label><br>
+                        {{ field }}
+                    
+                    </div>
+                {% endfor %}
+                <br><br><br>
+                <input type="submit" value="dodaj" class="button1">
+            </form>
+   
+    </div>
+
+
+</body>
+</html>
+
+{% include 'user/footer.html'  %}

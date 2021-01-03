@@ -1,4 +1,7 @@
+/squadra/pliki/*
 *.idea
 *.sqlite3
 *pyc
-pliki
+*venv
+venv
+ststic

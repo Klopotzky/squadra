@@ -1,0 +1,89 @@
+{% load static %}
+
+<html>
+    <head>
+        <style>
+            h1 {text-align: center}
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'user/style_user.css' %}">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    </head>
+<title>Squadra</title>
+
+<body>
+
+    <div class="navbar">
+        {% if user.is_authenticated %}
+        <a href="/" style="padding: 0px; float: left; margin-left: 4%;"> <b >SQUADRA</b> </a>
+
+        <b> Witaj, {{ request.user.first_name }} {{ request.user.last_name }} </b>
+
+        <a href="/logout"><i class="fa fa-fw fa-envelope"></i> Wyloguj </a>
+        <a href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+
+        {% else %}
+        <a href="/login"><i class="fa fa-fw fa-search"></i> Zaloguj</a>
+
+        <a href="/register"><i class="fa fa-fw fa-user"></i> Załóż konto</a>
+        <a href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+        {% endif %}
+    </div>
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none; margin-top: 45px; background-color: rgb(95, 145, 219);" id="mySidebar">
+        <a href="/squadra_app" class="w3-bar-item w3-button">Edytor</a>
+        <a href="/chat" class="w3-bar-item w3-button">Komunikator</a>
+        <a href="#" class="w3-bar-item w3-button">Zespół</a>
+        <a href="/NewProject" class="w3-bar-item w3-button">Dodaj Projekt</a>
+    </div>
+
+    <div class="navbar">
+        <div id="main" style="position:absolute">
+            <button id="openNav" style="padding: 5px 16px; color: white; background-color: rgb(95, 145, 219);" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+            <button id="closeNav" style="margin-left: 0%; display:none; padding: 5px 16px; color: white; background-color: rgb(95, 145, 219);" class="w3-button w3-xlarge" onclick="w3_close()">&#9776;</button>
+        </div>
+    </div>
+
+div.container1 {
+    height: 10em;
+    position: relative }
+div.container1 p {
+    margin: 0;
+    position: absolute;
+
+    <div class="container1" align="center" contenteditable="false">
+         <form action="" method="post" id="form" onsubmit="return false;">
+             {% csrf_token %}
+             <h1 align="center">Dodaj nowy pokój</h1>
+             <input align="left" type="text" id="new_room" />
+             <input align="left" type="submit" onclick="othername();" />
+         </form>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <script>
+        function w3_open() {
+          document.getElementById("main").style.marginLeft = "0%";
+          document.getElementById("mySidebar").style.width = "15%";
+          document.getElementById("mySidebar").style.display = "inline-block";
+          document.getElementById("openNav").style.display = 'none';
+          document.getElementById("closeNav").style.display = 'inline-block';
+        }
+        function w3_close() {
+          document.getElementById("main").style.marginLeft = "0%";
+          document.getElementById("mySidebar").style.display = "none";
+          document.getElementById("openNav").style.display = 'inline-block';
+          document.getElementById("closeNav").style.display = 'none';
+        }
+        function othername() {
+            var input = document.getElementById("new_room").value;
+            window.location.replace("/chat/"+input);
+            alert("Dodano nowy pokój chatu: " + input);
+        }
+    </script>
+
+</body>
+</html>
+

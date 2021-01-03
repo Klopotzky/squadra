@@ -1,1 +1,4 @@
-web: gunicorn squadra.wsgi --log-file -
+web: gunicorn squadra-proj.wsgi --log-file -
+
+
+

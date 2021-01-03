@@ -1,0 +1,49 @@
+{% include 'user/header.html' %}
+
+<!-- Trzeba dorobić kolumny. Każdy problem powienien wyświetlać się w konkretnej kolumnie
+zależnie od zmiennej "position". -->
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+        <form action="add_issue/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-field">
+                <input class="input-issue" type="text" id="iname" name="iname" required minlength="3" maxlength="30">
+            </div>
+
+            <div class="form-submit">
+                <input type="submit" value="Dodaj problem">
+            </div>
+        </form>
+
+        {% for elem in cards %}
+            {% if elem.position == 1 %}
+                <!-- Te elementy powinny wyświetlać się w kolumnie po lewej -->
+                <button class="button popup-open issue-details" value="{{elem.id}}"> {{elem.title}} </button>
+                <br>
+            {% endif %}
+            {% if elem.position == 2 %}
+                <!-- Te elementy powinny wyświetlać się w kolumnie po prawej stronie od tej pierwszej itd. -->
+                <button class="button popup-open issue-details" value="{{elem.id}}"> {{elem.title}} </button>
+                <br>
+            {% endif %}
+            {% if elem.position == 3 %}
+                <button class="button popup-open issue-details" value="{{elem.id}}"> {{elem.title}} </button>
+                <br>
+            {% endif %}
+            {% if elem.position == 4 %}
+                <button class="button popup-open issue-details" value="{{elem.id}}"> {{elem.title}} </button>
+                <br>
+            {% endif %}
+        {% endfor %}
+        
+    {% else %}
+
+    <br><br>
+    <center><h2> niezalogowany </h2></center>
+    {% endif %}
+
+{% endblock %}
+
+{% include 'user/footer.html' %}

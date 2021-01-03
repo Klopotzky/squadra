@@ -1,6 +1,9 @@
 from django.conf import settings
 from pathlib import Path
 from django.core.files.storage import Storage
+import zipfile
+import io
+from datetime import datetime
 
 
 # Klasa która służy do zarządzania naszym systemem plików. Jeśli chcesz dokonać jakiejkolwiek zmiany w systemie plików
@@ -68,3 +71,17 @@ class SqFileStoreSys(Storage):
 
     def get_path(self):
         return self.mypath
+
+    def zip_files(self, files):
+        filename = self.mypath / Path('Squadra_' + str(datetime.now().day) + '_' +  str(datetime.now().month) + ".zip")
+        zip = zipfile.ZipFile(filename, mode='w')
+
+        for file in files:
+            with open(self.mypath / file, 'rb') as f:
+                data = f.read()
+
+            zip.writestr(file, data)
+
+        zip.close()
+        return zip, filename.name
+        

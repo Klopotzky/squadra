@@ -1,0 +1,178 @@
+{% load static %}
+
+<!-- Ten HTML jest podstawowym HTML Squadry do niego dołączane są wszystkie inne HTMLe.
+     Wyświetla menu po boku i rzeczy na górze, ładuje podstawowe CSSy. -->
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{% static 'user/img/logo.png' %}"/>
+        <title>SQUADRA</title>
+
+        <!-- jQuery 3.5.1  -->
+        <script src="{% static 'user/js/jquery.js' %}"></script>
+        <script>jQuery.noConflict();</script>
+
+        <!-- select2 -->
+        <link rel="stylesheet" href="{% static 'user/css/select2.css' %}">
+        <script src="{% static 'user/js/select2.js' %}"></script>
+
+        <!-- custom js -->
+        <script src="{% static 'user/js/functions.js' %}"></script>
+
+        <!-- fontawesome 5.15.1 -->
+        <link rel="stylesheet" href="{% static 'user/fa/css/fa.css' %}">
+
+        <!-- custom css -->
+        <link rel="stylesheet" href="{% static 'user/css/style.css' %}">
+    </head>
+
+    <body {% if user.is_authenticated %} class="logged-in" {% endif %}>
+
+        <div id="container">
+            {% if user.is_authenticated %}
+            <div class="popup-container">
+                <div class="popup">
+                    <div class="popup-close"><i class="fas fa-times-circle"></i></div>
+                    {% if request.get_full_path == "/squadra_app/" %}
+                    <!-- System plików -->
+
+                    <h3 class="title">Wybierz plik</h3>
+
+                    <button id="exportFiles">Eksportuj pliki</button>
+
+                    <form action="add_file/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-field">
+                            <input type="file" id="myFile" name="filename" required>
+                        </div>
+                        {{ form.nazwa }}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <div class="form-submit">
+                            <input type="submit" value="Dodaj plik">
+                        </div>
+                    </form>
+
+                    <form action="new_dir/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-field">
+                            <input type="text" id="dname" name="dname" required minlength="3" maxlength="50">
+                        </div>
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <div class="form-submit">
+                            <input type="submit" value="Nowy katalog">
+                        </div>
+                    </form>
+
+                    <form action="new_file/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-field">
+                            <input type="text" id="fname" name="fname" required minlength="3" maxlength="50">
+                        </div>
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <div class="form-submit">
+                            <input type="submit" value="Nowy plik">
+                        </div>
+                    </form>
+
+                    <button id="downDict" value="down">Cofnij</button>
+
+                    {% include "user/squadra_app/storage.html" %}
+
+                    {% endif %}
+                    {% if request.get_full_path == "/projects" %}
+                    <!-- Projekty -->
+
+                    <div class="new-project-form">
+                        <h3 class="title">Utwórz nowy projekt</h3>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="form-field">
+                                <input type="text" id="project_name" name="project_name" placeholder="Nazwa projektu">
+                            </div>
+                            <div class="form-submit">
+                                <input type="submit" value="Utwórz">
+                            </div>                     
+                        </form>
+                    </div>
+                    <div class="add-member-form">
+                        <h3 class="title">Dodaj uczestnika do projektu</h3>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="form-field">
+                                <select class="select2">
+                                    <option></option>
+                                    <option>Lorem Ipsumowy</option>
+                                    <option>Dolor Sitowy</option>
+                                    <option>Ktoś Cośtamowy</option>
+                                    <option>Test Testowy</option>
+                                    <option>Przykład Człowiek</option>
+                                </select>
+                            </div>
+                            <div class="form-submit">
+                                <input type="submit" value="Dodaj">
+                            </div>                     
+                        </form>
+                    </div>
+                    {% endif %}
+
+                    {% if request.get_full_path == "/workflow/" %}
+                    <!-- Workflow -->
+                    {% include "user/workflow/issue_details.html" %}
+                    {% endif %}
+                </div>
+            </div>
+            <!-- koniec popupu -->
+            <div id="sidebar" class="open">
+                <div class="header spread">
+                    <div class="logo spread">
+                        <img src="{% static 'user/img/logo.png' %}" alt="SQUADRA">
+                        <div class="name">
+                            <h1>SQUADRA</h1>
+                            <div class="project-name">Nazwa projektu</div>
+                        </div>                        
+                    </div>                    
+                    <div class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+                <div class="menu">
+                    <a href="/" {% if request.get_full_path == "/" %} class="active" {% endif %}><i class="fas fa-tachometer-alt"></i> <span>Kokpit</span></a>
+                    <a href="/squadra_app" {% if request.get_full_path == "/squadra_app/" %} class="active" {% endif %}><i class="fas fa-clipboard"></i> <span>Edytor</span></a>
+                    <a href="/chat" {% if request.get_full_path == "/chat" %} class="active" {% endif %}><i class="fas fa-comments"></i> <span>Komunikator</span></a>
+                    <a href="/workflow" {% if request.get_full_path == "/workflow" %} class="active" {% endif %}><i class="fas fa-project-diagram"></i> <span>Workflow</span></a>
+                    <a href="/team" {% if request.get_full_path == "/team" %} class="active" {% endif %}><i class="fas fa-users"></i> <span>Zespół</span></a>
+                    <a href="/projects" {% if request.get_full_path == "/projects" %} class="active" {% endif %}><i class="fas fa-sync"></i> <span>Projekty</span></a>
+                    <a href="/logout"><i class="fas fa-door-open"></i> <span>Wyloguj</span></a>
+                </div>
+            </div> <!-- close sidebar -->
+            <div id="main">
+                <div id="top" class="spread">
+                    <div class="top-left">
+                        <div class="sidebar-toggle">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                        <div class="search">
+                            <form>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" name="s" placeholder="Wpisz szukaną frazę">
+                                </div>                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="top-right">
+                        <div class="user">
+                            <div class="user-img">
+                                <img src="{% static 'user/img/placeholder.png' %}" alt="{{ request.user.first_name }} {{ request.user.last_name }">
+                            </div>
+                            <div class="user-content">
+                                <h5 class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</h5>
+                                <span class="user-role">administrator</span>
+                            </div>                            
+                        </div>
+                    </div>
+                </div> <!-- close top -->
+                <div class="top-space"></div>
+                <div id="content">
+                {% endif %}

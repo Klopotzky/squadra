@@ -1,29 +1,41 @@
 {% load static %}
 
-{% include 'pages/base2.html'  %}
-<link rel="stylesheet" type="text/css" href="{% static 'user/style_user.css' %}">
+{% include 'user/header.html' %}
 
-
-<div class="container">
-    
-           <center> <img src="{% static "user/images/image18.png" %} "></center>
-            <div class="register1"><h2>Login</h2> </div>
+<div id="login">
+    <div class="login-container">        
+        <div class="login-form">
+            <div class="logo">
+                <img src="{% static 'user/img/logo.png' %}" alt="SQUADRA">
+                <h1>SQUADRA</h1>
+            </div>
             <form action="" method="post">
                 {% csrf_token %}
-                
-                {% for field in form %}
-                    <div class="field">
-                        <label for="{{ field.id_for_label }}" class="label">{{ field.html_name }}</label><br>
-                        {{ field }}
-                    
-                    </div>
-                {% endfor %}
-                <br><br>
-                <input type="submit" value="Zaloguj" class="button1">
-            </form>
-   
+
+                {% if next %}
+                    <input type="hidden" name="next" value="{{ next }}" />
+                {% endif %}
+
+                <div class="input-with-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" value="{{username}}" placeholder="Nazwa użytkownika">
+                </div>
+
+                <div class="input-with-icon">
+                    <i class="fas fa-unlock-alt"></i>
+                    <input type="password" name="password" placeholder="Hasło">
+                </div>
+                <a href="#" class="forgotpass">Nie pamiętasz hasła?</a>
+                <div>
+                    <input type="submit" value="Zaloguj się">
+                </div>
+            </form>            
+        </div>
+        <div class="login-register">
+            Nie masz konta? <a href="/register">Zarejestruj się</a>
+        </div>
     </div>
+    
+</div>
 
-
-</body>
-</html>
+{% include 'user/footer.html'  %}

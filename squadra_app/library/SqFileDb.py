@@ -15,6 +15,10 @@ class SqFileDb:
             S = Storage
             self.M = SqFileStoreSys(S)
         except Exception as e:
+            try:
+                Katalog.objects.create(nazwa="Glowny")
+            except Exception as ex:
+                print(ex)
             print(e)
 
     def open_file(self, filename):
@@ -53,3 +57,6 @@ class SqFileDb:
 
     def get_dir(self):
         return self.mydir
+
+    def zip_files(self, files):
+        return self.M.zip_files(files)

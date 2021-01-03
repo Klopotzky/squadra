@@ -1,0 +1,175 @@
+{% load static %}
+
+{% include 'user/header.html' %}
+
+<div class="row">
+    <div class="col">
+        <div class="widget">
+            <div class="widget-title spread">
+                <h3>Lista projektów</h3>
+                <div class="button popup-open new-project"><i class="fas fa-plus"></i>Utwórz nowy</div>
+            </div>
+            <div class="table-container">
+                <table class="projects">
+                    <thead>
+                        <tr>
+                            <th>Nazwa projektu</th>
+                            <th>Członkowie</th>
+                            <th>Data utworzenia</th>
+                            <th>Ostatnia zmiana</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="project-1" class="project">
+                            <td><a class="project-name" href="#">Lorem ipsum</a></td>
+                            <td>
+                                <div class="members">
+                                    <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
+                                    <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
+                                    <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
+                                    <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
+                                    <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
+                                    <span class="more">+5</span>
+                                </div>
+                            </td>                            
+                            <td>27.02.2019 o 13:11</td>
+                            <td>8.04.2020 o 18:45</td>
+                            <td>
+                                <div class="actions">
+                                    <a href="#" class="edit" title="Edytuj projekt"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="copy" title="Skopiuj projekt"><i class="far fa-copy"></i></a>
+                                    <a href="#" class="delete" title="Usuń projekt"><i class="fas fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="edit-project-1" class="project-edit">
+                            <td colspan="5">
+                                <form>
+                                    <div class="form-field">
+                                        <label>Nazwa projektu</label>
+                                        <input type="text" value="Lorem ipsum">
+                                    </div>
+                                    <label>Członkowie</label>
+                                    <div class="members">
+                                        <div class="member">
+                                            <div class="member-remove"><i class="fas fa-times"></i></div>
+                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
+                                            <span>Imię i nazwisko</span>
+                                            <select>
+                                                <option>administrator</option>
+                                                <option>edytor</option>
+                                                <option>użytkownik</option>
+                                            </select>
+                                        </div>
+                                        <div class="member">
+                                            <div class="member-remove"><i class="fas fa-times"></i></div>
+                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
+                                            <span>Imię i nazwisko</span>
+                                            <select>
+                                                <option>administrator</option>
+                                                <option>edytor</option>
+                                                <option>użytkownik</option>
+                                            </select>
+                                        </div>
+                                        <div class="member">
+                                            <div class="member-remove"><i class="fas fa-times"></i></div>
+                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
+                                            <span>Imię i nazwisko</span>
+                                            <select>
+                                                <option>administrator</option>
+                                                <option>edytor</option>
+                                                <option>użytkownik</option>
+                                            </select>
+                                        </div>
+                                        <div class="member add-member popup-open">
+                                            <i class="fas fa-user-plus"></i> Dodaj uczestnika
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <a href="#" class="cancel">Anuluj</a>
+                                        <div class="button project-save"><i class="fas fa-save"></i> Zapisz</div>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr id="project-2" class="project">
+                            <td><a class="project-name" href="#">Dolor sit amet</a></td>
+                            <td>
+                                <div class="members">
+                                    <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
+                                    <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
+                                    <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
+                                    <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
+                                    <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
+                                    <span class="more">+5</span>
+                                </div>
+                            </td>
+                            <td>12.03.2018 o 14:17</td>
+                            <td>26.11.2019 o 8:12</td>
+                            <td>
+                                <div class="actions">
+                                    <a href="#" class="edit" title="Edytuj projekt"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="copy" title="Skopiuj projekt"><i class="far fa-copy"></i></a>
+                                    <a href="#" class="delete" title="Usuń projekt"><i class="fas fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="edit-project-2" class="project-edit">
+                            <td colspan="5">
+                                <form>
+                                    <div class="form-field">
+                                        <label>Nazwa projektu</label>
+                                        <input type="text" value="Dolor sit amet">
+                                    </div>
+                                    <label>Członkowie</label>
+                                    <div class="members">
+                                        <div class="member">
+                                            <div class="member-remove"><i class="fas fa-times"></i></div>
+                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
+                                            <span>Imię i nazwisko</span>
+                                            <select>
+                                                <option>administrator</option>
+                                                <option>edytor</option>
+                                                <option>użytkownik</option>
+                                            </select>
+                                        </div>
+                                        <div class="member">
+                                            <div class="member-remove"><i class="fas fa-times"></i></div>
+                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
+                                            <span>Imię i nazwisko</span>
+                                            <select>
+                                                <option>administrator</option>
+                                                <option>edytor</option>
+                                                <option>użytkownik</option>
+                                            </select>
+                                        </div>
+                                        <div class="member">
+                                            <div class="member-remove"><i class="fas fa-times"></i></div>
+                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
+                                            <span>Imię i nazwisko</span>
+                                            <select>
+                                                <option>administrator</option>
+                                                <option>edytor</option>
+                                                <option>użytkownik</option>
+                                            </select>
+                                        </div>
+                                        <div class="member add-member popup-open">
+                                            <i class="fas fa-user-plus"></i> Dodaj uczestnika
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <a href="#" class="cancel">Anuluj</a>
+                                        <div class="button project-save"><i class="fas fa-save"></i> Zapisz</div>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>                
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'user/footer.html'  %}

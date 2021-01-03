@@ -10,7 +10,7 @@ from django.contrib.auth.models import User, auth
 # Create your views here.
 
 def create_user(reqest):
-    if reqest.method == 'POST':
+    if reqest.method == 'POST':    
         form = UserRegister(reqest.POST)
         if form.is_valid():
             form.save()
@@ -27,3 +27,11 @@ def create_user(reqest):
 def logout(reqest):
     auth.logout(reqest)
     return redirect('login')
+
+
+def home(request, *args, **kwargs):
+    if request.user.is_authenticated:
+        return render(request, 'user/home.html')
+    else:
+        return redirect('login')
+    
