@@ -5,4 +5,4 @@ COPY requirements.txt /squadra/
 RUN pip install -r requirements.txt
 COPY . /squadra/
 
-RUN DJANGO_MODE=build python manage.py collectstatic --noinput
+#RUN DJANGO_MODE=build python manage.py collectstatic --noinput
