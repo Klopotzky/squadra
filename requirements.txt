@@ -65,3 +65,17 @@ Txaio==20.4.1
 gevent
 gevent-socketio
 gevent-websocket
+
+
+#=============================================
+# to deploy on Divio
+django-storage-url==0.5.0
+whitenoise==5.2.0
+boto3==1.14.49
+
+# Select one of the following for the database
+psycopg2==2.8.5
+
+# Select one of the following for the gateway server
+uwsgi==2.0.19.1
+gunicorn==20.0.4
