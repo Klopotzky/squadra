@@ -12,10 +12,10 @@ COPY . /squadra/
 EXPOSE 8000
 
 # Add any static environment variables needed by Django or your settings file here:
-ENV DJANGO_SETTINGS_MODULE=squadra.settings.deploy
+#ENV DJANGO_SETTINGS_MODULE=squadra.settings.deploy
 
 # Call collectstatic (customize the following line with the minimal environment variables needed for manage.py to run):
-RUN DATABASE_URL='postgres://postgres:postgres@localhost:/postgres' python manage.py collectstatic --noinput
+#RUN DATABASE_URL='postgres://postgres:postgres@localhost:/postgres' python manage.py collectstatic --noinput
 
 # Tell uWSGI where to find your wsgi file (change this):
 ENV UWSGI_WSGI_FILE=squadra/wsgi.py
@@ -33,7 +33,7 @@ ENV UWSGI_STATIC_MAP="/static/=/code/static/" UWSGI_STATIC_EXPIRES_URI="/static/
 # ENV UWSGI_ROUTE_HOST="^(?!localhost:8000$) break:400"
 
 # Change to a non-root user
-USER ${APP_USER}:${APP_USER}
+#USER ${APP_USER}:${APP_USER}
 
 # Uncomment after creating your docker-entrypoint.sh
 # ENTRYPOINT ["/code/docker-entrypoint.sh"]
