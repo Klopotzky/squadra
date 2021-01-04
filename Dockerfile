@@ -4,7 +4,7 @@ WORKDIR /squadra
 COPY requirements.txt /squadra/
 RUN pip install -r requirements.txt
 COPY . /squadra/
-#CMD ["python", "manage.py", "runserver", "0.0.0.0:10702"]
+
 
 
 #============================================
@@ -39,4 +39,6 @@ ENV UWSGI_STATIC_MAP="/static/=/code/static/" UWSGI_STATIC_EXPIRES_URI="/static/
 # ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
 # Start uWSGI
-CMD ["uwsgi", "--show-config"]
+#CMD ["uwsgi", "--show-config"]
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
