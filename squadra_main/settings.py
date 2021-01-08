@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import aldryn_addons.settings
-aldryn_addons.settings.load(locals())
+# import aldryn_addons.settings
+# aldryn_addons.settings.load(locals())
 
 # from decouple import config
 # from dj_database_url import parse as dburl
@@ -49,10 +49,14 @@ INSTALLED_APPS = [
     'addProject',
     'chat',
     'workflow',
+]
+
+INSTALLED_ADDONS = [
     'aldryn-addons',
     'aldryn-django',
     'aldryn-sso',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

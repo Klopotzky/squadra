@@ -8,11 +8,12 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 """
 
 import os
-from aldryn_django import startup
+# from aldryn_django import startup
+# import startup as startup
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'squadra_main.settings')
 
-# application = get_wsgi_application()
+application = get_wsgi_application()
 
-application = startup.wsgi(path=os.path.dirname(__file__))
+# application = startup.wsgi(path=os.path.dirname(__file__))
