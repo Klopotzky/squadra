@@ -4,7 +4,7 @@
 #
 # See our Developer Handbook for more information:
 # http://docs.divio.com/en/latest/reference/docker-docker-compose.html
-version: "2"
+version: "3.9"
 
 services:
   # The web container is an instance of exactly the same Docker image as your
@@ -19,7 +19,7 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ".:/app:rw"
+      - ".:/squadra:rw"
       - "./data:/data:rw"
     # The default command that the container starts with. If you'd like to run
     # the project locally in Live configuration, you will need to change this.
@@ -32,9 +32,14 @@ services:
   # On the Cloud, your database runs on a dedicated cluster. Locally, we
   # replicate it in a Docker container called "db".
   db:
-    image: postgres:9.6-alpine
+    image: postgres:9.6
     environment:
-      POSTGRES_DB: "db"
-      POSTGRES_HOST_AUTH_METHOD: "trust"
+      - POSTGRES_DB=db
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
-      - ".:/app:rw"
+      - ".:/squadra:rw"
+    ports:
+      - "8000:8000"
