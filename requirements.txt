@@ -75,3 +75,8 @@ psycopg2 # ==2.8.6
 
 # the gateway server
 gunicorn==20.0.4
+
+django-sslserver
+
+startup
+# aldryn-addons
