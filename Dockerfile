@@ -32,7 +32,7 @@ COPY addons-dev /squadra/addons-dev/
 RUN pip-reqs resolve && \
     pip install \
         --no-index --no-deps \
-        --requirement requirements.urls
+        --requirement requirements.txt
 # </PYTHON>
 
 # <SOURCE>
