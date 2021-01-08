@@ -26,10 +26,6 @@ FROM divio/base:4.18-py3.6-slim-stretch
         # z divio # --no-index --no-deps \
         # z divio # --requirement requirements.urls
 FROM python:3
-ENV PYTHONUNBUFFERED=1
-COPY requirements.txt /squadra/
-RUN pip install -r requirements.txt
-COPY . /squadra/
 ENV PIP_INDEX_URL=${PIP_INDEX_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/${WHEELS_PLATFORM:-aldryn-baseproject-py3}/+simple/} \
     WHEELSPROXY_URL=${WHEELSPROXY_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/${WHEELS_PLATFORM:-aldryn-baseproject-py3}/}
 COPY requirements.* /app/
