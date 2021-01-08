@@ -22,9 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '03ls)7+n#et^dbf0jfalyu_r&0=dwk^)%!2s%6$7o^2oohfj75')
-# DEBUG = config('DEBUG', default=False, cast=bool)
-# DEBUG = True
-# DEBUG = os.environ.get('DJANGO_DEBUG') == "True"
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
@@ -170,8 +167,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = 'app_page'
-
-ASGI_APPLICATION = "squadra_main.routing.application"
 
 CHANNEL_LAYERS = {
     'default': {
