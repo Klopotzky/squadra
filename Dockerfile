@@ -17,8 +17,8 @@ FROM debian:8.7
 # <PYTHON>
 ENV PIP_INDEX_URL=${PIP_INDEX_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/aldryn-baseproject/+simple/} \
     WHEELSPROXY_URL=${WHEELSPROXY_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/aldryn-baseproject/}
-COPY requirements.* /app/
-COPY addons-dev /app/addons-dev/
+COPY requirements.* /squadra/
+COPY addons-dev /squadra/addons-dev/
 RUN pip-reqs resolve && \
     pip install \
         --no-index --no-deps \
@@ -26,7 +26,7 @@ RUN pip-reqs resolve && \
 # </PYTHON>
 
 # <SOURCE>
-COPY . /app
+COPY . /squadra
 # </SOURCE>
 
 # <GULP>

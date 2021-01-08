@@ -10,11 +10,7 @@ services:
   # The web container is an instance of exactly the same Docker image as your
   # Cloud application container.
   web:
-<<<<<<< HEAD
-    build: "squadra_main"
-=======
-    build: "."
->>>>>>> 8df0496d07d81875516d9350a867ae7830143c26
+    build: .
     links:
       - "db:postgres"
     # Change the port if you'd like to expose your project locally on a
