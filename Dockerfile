@@ -27,7 +27,6 @@ FROM divio/base:4.18-py3.6-slim-stretch
         # z divio # --requirement requirements.urls
 FROM python:3
 ENV PYTHONUNBUFFERED=1
-WORKDIR /squadra
 COPY requirements.txt /squadra/
 RUN pip install -r requirements.txt
 COPY . /squadra/
