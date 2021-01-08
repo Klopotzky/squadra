@@ -1,10 +1,14 @@
 FROM python:3
 ENV PYTHONUNBUFFERED=1
 WORKDIR /squadra
+COPY . /squadra/
 COPY requirements.txt /squadra/
 RUN pip install -r requirements.txt
+<<<<<<< HEAD
 COPY . /squadra/
 
+=======
+>>>>>>> e0f84abbacb456bd7d0a1b35613b319fd7fab8e5
 
 
 #============================================
@@ -12,10 +16,25 @@ COPY . /squadra/
 EXPOSE 8000
 
 # Add any static environment variables needed by Django or your settings file here:
+<<<<<<< HEAD
 #ENV DJANGO_SETTINGS_MODULE=squadra.settings.deploy
 
 # Call collectstatic (customize the following line with the minimal environment variables needed for manage.py to run):
+#RUN DATABASE_URL='postgres://postgres:postgres@localhost:/postgres'
+=======
+
+#ENV DJANGO_SETTINGS_MODULE=squadra.settings.deploy
+
+# Call collectstatic (customize the following line with the minimal environment variables needed for manage.py to run):
+#RUN DATABASE_URL='postgres://postgres:postgres@localhost:5432/postgres'
+
+#ENV DJANGO_SETTINGS_MODULE=squadra.settings
+ENV application = Cling(get_wsgi_application())
+
+# Call collectstatic (customize the following line with the minimal environment variables needed for manage.py to run):
 #RUN DATABASE_URL='postgres://postgres:postgres@localhost:/postgres' python manage.py collectstatic --noinput
+
+>>>>>>> e0f84abbacb456bd7d0a1b35613b319fd7fab8e5
 
 # Tell uWSGI where to find your wsgi file (change this):
 ENV UWSGI_WSGI_FILE=squadra/wsgi.py
@@ -30,10 +49,14 @@ ENV UWSGI_WORKERS=2 UWSGI_THREADS=4
 ENV UWSGI_STATIC_MAP="/static/=/code/static/" UWSGI_STATIC_EXPIRES_URI="/static/.*\.[a-f0-9]{12,}\.(css|js|png|jpg|jpeg|gif|ico|woff|ttf|otf|svg|scss|map|txt) 315360000"
 
 # Deny invalid hosts before they get to Django (uncomment and change to your hostname(s)):
-# ENV UWSGI_ROUTE_HOST="^(?!localhost:8000$) break:400"
+ENV UWSGI_ROUTE_HOST="^(?!localhost:8000$) break:400"
 
 # Change to a non-root user
 #USER ${APP_USER}:${APP_USER}
+<<<<<<< HEAD
+=======
+
+>>>>>>> e0f84abbacb456bd7d0a1b35613b319fd7fab8e5
 
 # Uncomment after creating your docker-entrypoint.sh
 # ENTRYPOINT ["/code/docker-entrypoint.sh"]
@@ -41,4 +64,20 @@ ENV UWSGI_STATIC_MAP="/static/=/code/static/" UWSGI_STATIC_EXPIRES_URI="/static/
 # Start uWSGI
 #CMD ["uwsgi", "--show-config"]
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+
+RUN python manage.py collectstatic --noinput
+
+# Select one of the following application gateway server commands
+CMD gunicorn --bind=0.0.0.0:80 --forwarded-allow-ips="*" myapp.wsgi
+
+<<<<<<< HEAD
+
+#docker-compose up --remove-orphans
+=======
+#docker-compose down
+#docker-compose up --remove-orphans
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+>>>>>>> e0f84abbacb456bd7d0a1b35613b319fd7fab8e5

@@ -1,0 +1,19 @@
+{% load static %}
+
+{% include 'user/header.html' %}
+
+Nazwa Projektu:<br>
+{{ obj.project_name}}
+<br><br>
+
+Twórca Projektu:<br>
+
+{{ obj.project_creator}}
+<br><br>
+
+Data Utworzenia:<br>
+
+{{ obj.created_at}}
+
+
+{% include 'user/footer.html'  %}

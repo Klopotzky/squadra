@@ -142,34 +142,29 @@ jQuery(function ($) {
         //Poruszanie się po folderach. Z jakiegoś powodu blokuje się po jednym kliknięciu.
         //Tak jakby dało się użyć funkcję tylko raz
         $('.getDict').on('click', function() {
-          $(this).text(function(e, elem) {
-            $(this).val(function(a, direct) {
-              $('#dictAndFile').load(
-                "ajax_storage_content/?next_dict=" + elem + "&direct=" + direct
-              );
-            });
-          });
+          elem = $(this).text();
+          direct = $(this).val();
+          $('#dictAndFile').load(
+            "ajax_storage_content/?next_dict=" + elem + "&direct=" + direct
+          );
         });
 
         $('#downDict').on('click', function() {
-          $("#downDict").text(function(e, elem) {
-            $("#downDict").val(function(a, direct) {
-              $('#dictAndFile').load(
-                "ajax_storage_content/?next_dict=" + elem + "&direct=" + direct
-              );
-            });
-          });
+          elem = $(this).text();
+          direct = $(this).val();
+          $('#dictAndFile').load(
+            "ajax_storage_content/?next_dict=" + elem + "&direct=" + direct
+          );
         });
-      });
 
       ////////////////////////WORKFLOW//////////////////////////////////////////
+
       $('.issue-details').on('click', function() {
-          console.log("issue-details ");
-          $(this).val(function(e, id){
-          console.log("issue-details dalej ");
-              $('#issue-details-pop').load(
+          id = $(this).val();
+          $('#issue-details-pop').load(
                   "issue_details/?issue-id=" + id
-              );
-          });
+          );
       });
+
+    });
 });

@@ -11,7 +11,7 @@ SQUADRA
     --col2: #7866DE;
     --col3: #52D9BE;
     --text: #676767;
-    --text2: #333;
+    --text2: #1f1f1f;
 }
 
 /* fonty */
@@ -102,7 +102,7 @@ h5 {
 }
 
 .title {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 b, strong {
@@ -119,6 +119,16 @@ a:hover {
     color: var(--col1);
 }
 
+.abs-link {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
 img {
     display: block;
     max-width: 100%;
@@ -131,7 +141,7 @@ form {
     margin: 0;
 }
 
-input[type=text], input[type=email], input[type=tel], input[type=password], input[type=date], input[type=number], select, textarea {
+input[type=text], input[type=email], input[type=tel], input[type=password], input[type=date], input[type=number], select, textarea, .select2-container--default .select2-selection--single {
     border: 0;
     background: #f5f5f5;
     border: 2px solid #f5f5f5;
@@ -148,7 +158,7 @@ input[type=text], input[type=email], input[type=tel], input[type=password], inpu
     color: var(--text);
 }
 
-input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=password]:focus, input[type=date]:focus, input[type=number]:focus, select:focus, textarea:focus {
+input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=password]:focus, input[type=date]:focus, input[type=number]:focus, select:focus, textarea:focus, .select2-container--default.select2-container--open.select2-container--below .select2-selection--single, .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
     border-color: var(--col1);
 }
 
@@ -177,6 +187,12 @@ input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[ty
 
 .form-field {
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.form-field label {
+    margin-right: 15px;
 }
 
 .input-with-icon {
@@ -201,6 +217,62 @@ input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[ty
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+}
+
+/* select 2 */
+
+.select2-container {
+    width: 100% !important;
+}
+
+.select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple {
+    text-align: left;
+    height: auto;
+    transition: initial;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 28px;
+    top: 12px;
+    right: 25px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: var(--text) transparent transparent transparent;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: 0;
+}
+
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single, .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+    border-bottom-color: transparent;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.select2-dropdown {
+    border: 2px solid var(--col1);
+    margin-top: -2px;
+    background: #f5f5f5;
+}
+
+.select2-search--dropdown {
+    padding: 0;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    border: 2px solid transparent;
+    padding: 5px 30px;
+    outline: none;
+}
+
+.select2-results__option {
+    padding: 10px 30px;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background: var(--col1);
 }
 
 /* logowanie */
@@ -272,6 +344,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[ty
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     opacity: 0;
     transform: scale(0);
     transition: 0s transform .2s, .2s opacity ease 0s;
@@ -381,16 +454,8 @@ input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[ty
     line-height: 1.1;
 }
 
-.project-name {
+.logo .project-name {
     font-size: 75%;
-}
-
-.project-name a {
-    color: var(--col1);
-}
-
-.project-name a:hover {
-    color: var(--col2);
 }
 
 .sidebar-toggle {
@@ -519,6 +584,258 @@ input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[ty
     background: transparent;
 }
 
+/* widgety */
+
+.widget {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0,0,0,.05);
+}
+
+.widget-title {
+    padding: 15px 30px;
+}
+
+/* rzedy */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    position: relative;
+}
+
+.row.centered {
+    align-items: center;
+}
+
+.row-header {
+    background: var(--col1);
+    color: #fff;
+    font-size: 110%;
+}
+
+.col {
+    padding: 15px;
+    width: 100%;
+    position: relative;
+}
+
+.col_1 {
+    width: 8.3333%;
+}
+
+.col_2 {
+    width: 16.6666%;
+}
+
+.col_3 {
+    width: 25%;
+}
+
+.col_4 {
+    width: 33.3333%;
+}
+
+.col_5 {
+    width: 41.6666%;
+}
+
+.col_6 {
+    width: 50%;
+}
+
+.col_7 {
+    width: 58.3333%;
+}
+
+.col_8 {
+    width: 66.6666%;
+}
+
+.col_9 {
+    width: 75%;
+}
+
+.col_10 {
+    width: 83.3333%;
+}
+
+.col_11 {
+    width: 91.6666%;
+}
+
+/* tabelki */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    font-size: 100%;
+}
+
+thead {
+    background: var(--col1);
+    color: #fff;
+    font-size: 110%;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    font-weight: 400;
+}
+
+th:first-child, td:first-child {
+    padding-left: 30px;
+}
+
+th:last-child, td:last-child {
+    padding-right: 30px;
+}
+
+/* projekty */
+
+.project .project-name {
+    color: var(--col1);
+}
+
+.project .project-name:hover {
+    color: var(--col2);
+}
+
+.members {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.members > a, .members > .more {
+    margin-right: -10px;
+    position: relative;
+    z-index: 10;
+}
+
+.members > a:last-child, .members > .more:last-child {
+    margin-right: 0;
+}
+
+.members img, .members .more {
+    width: 35px;
+    height: 35px;
+    line-height: 31px;
+    border-radius: 100%;
+    border: 2px solid #fff;
+    background: var(--col1);
+    color: #fff;
+    text-align: center;
+    display: block;
+    font-weight: 600;
+}
+
+.actions > a {
+    position: relative;
+    z-index: 10;
+}
+
+.actions > a + a {
+    margin-left: 5px;
+}
+
+.actions .edit {
+    color: var(--col3);
+}
+
+.actions .copy {
+    color: var(--col1);
+}
+
+.actions .delete {
+    color: var(--col2);
+}
+
+.actions a:hover {
+    color: var(--text2);
+}
+
+.project-edit {
+    background: #ededed;
+    margin: 0 -15px;
+    padding: 15px 30px;
+    width: calc(100% + 30px);
+    display: none;
+}
+
+.member {
+    display: flex;
+    align-items: center;
+}
+
+.member-remove {
+    margin-right: 15px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.member-remove:hover {
+    color: var(--col1);
+}
+
+.member span {
+    padding: 0 10px;
+}
+
+/* edycja projektu */
+
+.project-edit td {
+    padding: 0;
+}
+
+.project-edit td form {
+    padding: 15px 30px;
+    display: none;
+}
+
+.project-edit .members {
+    margin: 0 -5px;
+}
+
+.project-edit .member {
+    margin: 5px;
+    background: #f5f5f5;
+    border-radius: 30px;
+    padding: 5px 20px;
+}
+
+.member select {
+    padding: 0 10px;
+    border: 0;
+}
+
+.project-edit .add-member {
+    padding: 9px 20px;
+    background: var(--col1);
+    color: #fff;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.project-edit .add-member i {
+    padding-right: 10px;
+}
+
+.project-edit .add-member:hover {
+    background: var(--col2);
+}
+
+.project:not(:first-child) td {
+    border-top: 1px solid #f5f5f5;
+}
+
 /* edytor */
 
 .django-ckeditor-widget {
@@ -545,6 +862,21 @@ input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[ty
     background: var(--col3);
 }
 
-.getFile .getDict{
-    text-transform: none;
+/* Eksplorator plikow */
+.getFile .getDict {
+    text-transform: none !important;
+}
+
+/* Workflow */
+.issue-details {
+    top: 12;
+}
+
+.input-issue:invalid {
+    border: 2px dashed red;
+}
+
+.issue-member {
+    display: block;
+    padding: 5px;
 }

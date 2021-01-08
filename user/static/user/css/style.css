@@ -875,3 +875,8 @@ th:last-child, td:last-child {
 .input-issue:invalid {
     border: 2px dashed red;
 }
+
+.issue-member {
+    display: block;
+    padding: 5px;
+}

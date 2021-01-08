@@ -34,7 +34,7 @@
             <div class="popup-container">
                 <div class="popup">
                     <div class="popup-close"><i class="fas fa-times-circle"></i></div>
-                    {% if request.get_full_path == "/squadra_app/" %}
+                    {% if request.get_full_path == "/editor/" %}
                     <!-- System plików -->
 
                     <h3 class="title">Wybierz plik</h3>
@@ -77,7 +77,7 @@
 
                     <button id="downDict" value="down">Cofnij</button>
 
-                    {% include "user/squadra_app/storage.html" %}
+                    {% include "user/editor/storage.html" %}
 
                     {% endif %}
                     {% if request.get_full_path == "/projects" %}
@@ -138,7 +138,7 @@
                 </div>
                 <div class="menu">
                     <a href="/" {% if request.get_full_path == "/" %} class="active" {% endif %}><i class="fas fa-tachometer-alt"></i> <span>Kokpit</span></a>
-                    <a href="/squadra_app" {% if request.get_full_path == "/squadra_app/" %} class="active" {% endif %}><i class="fas fa-clipboard"></i> <span>Edytor</span></a>
+                    <a href="/editor" {% if request.get_full_path == "/editor/" %} class="active" {% endif %}><i class="fas fa-clipboard"></i> <span>Edytor</span></a>
                     <a href="/chat" {% if request.get_full_path == "/chat" %} class="active" {% endif %}><i class="fas fa-comments"></i> <span>Komunikator</span></a>
                     <a href="/workflow" {% if request.get_full_path == "/workflow" %} class="active" {% endif %}><i class="fas fa-project-diagram"></i> <span>Workflow</span></a>
                     <a href="/team" {% if request.get_full_path == "/team" %} class="active" {% endif %}><i class="fas fa-users"></i> <span>Zespół</span></a>

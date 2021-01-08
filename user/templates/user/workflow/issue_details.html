@@ -1,11 +1,63 @@
 {% block content %}
-            <div id="issue-details-pop">
-                <h3 class="title">Szczegóły problemu</h3>
-                <p> Tytuł: {{details.title}}</p>
-                <p> Użytkownik przypisany: {{details.id_user}}</p>
-                <p> Twórca: {{details.id_creator}}</p>
-                <p> Data utworzenia: {{details.creation_time}}</p>
-                <p> Data modyfikacji: {{modification_timee}}</p>
-                <p> Priorytet: </p>
-            </div>
+            <form action="issue_edit/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div id="issue-details-pop">
+                    <h3 class="title">Szczegóły problemu</h3>
+                    <input type="hidden" name="issue_id" value="{{issue_id}}">
+
+                    <label for="title">Tytuł:</label>
+                    <input id="title" name="title" value="{{details.title}}">
+                    <br>
+                    <label for="user">Użytkownik przypisany:
+                        <select id="user" name="user">
+                            <option value="{{details.id_user.id}}" selected="selected">
+                                    {% if details.id_user == None %}
+                                        Brak
+                                    {% else %}
+                                        {{details.id_user}}
+                                    {% endif %}
+                            </option>
+
+                            {% for user in users %}
+                                <option value="{{user.id}}">
+                                       {{user.name}}
+                                </option>
+                            {% endfor %}
+
+                        </select>
+                    </label>
+
+                    <p> Twórca: {{creator.first_name}} {{creator.last_name}}</p>
+                    <p> Data utworzenia: {{details.creation_time|date:"Y-m-d H:i"}}</p>
+                    <p> Data modyfikacji: {{details.modification_timee|date:"Y-m-d H:i"}}</p>
+                    <label for="priority"> Priorytet:
+                        <select id="priority" name="priority">
+                            <option selected="selected">
+                                {% if details.priority == None %}
+                                    Niski
+                                {% else %}
+                                    {{details.priority}}
+                                {% endif %}
+                            </option>
+                            {% for priority in priorities %}
+                               <option>
+                                   {{priority}}
+                               </option>
+                            {% endfor %}
+                        </select>
+                    </label>
+
+                    <p> Status: {{status}}</p>
+
+                    {% if details.description == None %}
+                        <textarea id="description" name="description" rows="4" cols="50"></textarea>
+                    {% else %}
+                        <textarea id="description" name="description" rows="4" cols="50">{{details.description}}</textarea>
+                    {% endif %}
+
+                    <div class="form-submit">
+                        <input type="submit" value="Zapisz">
+                    </div>
+                </div>
+            </form>
 {% endblock %}

@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 class Project(models.Model):
     project_name = models.CharField(max_length=30, unique=True)
     project_creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
-
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.project_name
 

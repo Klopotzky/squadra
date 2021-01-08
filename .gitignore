@@ -1,9 +1,0 @@
-/squadra/pliki/*
-*.idea
-*.sqlite3
-*pyc
-*venv
-venv
-ststic
-.divio
-

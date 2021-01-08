@@ -14,6 +14,8 @@
                     <thead>
                         <tr>
                             <th>Nazwa projektu</th>
+                          
+                             
                             <th>Członkowie</th>
                             <th>Data utworzenia</th>
                             <th>Ostatnia zmiana</th>
@@ -21,8 +23,21 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        
+                        
+                        {% block  content %}
+
+                           
+
+                                {% for itemName in object_list %}
+                                
+                                
+
                         <tr id="project-1" class="project">
-                            <td><a class="project-name" href="#">Lorem ipsum</a></td>
+
+
+                            <td><a class="project-name" href="/ProjectEdit/{{itemName.project_name}}">{{itemName.project_name}}</a></td>
                             <td>
                                 <div class="members">
                                     <a href="#" title="Imię i nazwisko"><img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko"></a>
@@ -33,8 +48,8 @@
                                     <span class="more">+5</span>
                                 </div>
                             </td>                            
-                            <td>27.02.2019 o 13:11</td>
-                            <td>8.04.2020 o 18:45</td>
+                            <td>{{itemName.created_at}}</td>
+                            <td>{{itemName.updated_at}}</td>
                             <td>
                                 <div class="actions">
                                     <a href="#" class="edit" title="Edytuj projekt"><i class="fas fa-pencil-alt"></i></a>
@@ -43,56 +58,31 @@
                                 </div>
                             </td>
                         </tr>
+
+
                         <tr id="edit-project-1" class="project-edit">
-                            <td colspan="5">
-                                <form>
-                                    <div class="form-field">
-                                        <label>Nazwa projektu</label>
-                                        <input type="text" value="Lorem ipsum">
-                                    </div>
-                                    <label>Członkowie</label>
-                                    <div class="members">
-                                        <div class="member">
-                                            <div class="member-remove"><i class="fas fa-times"></i></div>
-                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
-                                            <span>Imię i nazwisko</span>
-                                            <select>
-                                                <option>administrator</option>
-                                                <option>edytor</option>
-                                                <option>użytkownik</option>
-                                            </select>
-                                        </div>
-                                        <div class="member">
-                                            <div class="member-remove"><i class="fas fa-times"></i></div>
-                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
-                                            <span>Imię i nazwisko</span>
-                                            <select>
-                                                <option>administrator</option>
-                                                <option>edytor</option>
-                                                <option>użytkownik</option>
-                                            </select>
-                                        </div>
-                                        <div class="member">
-                                            <div class="member-remove"><i class="fas fa-times"></i></div>
-                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
-                                            <span>Imię i nazwisko</span>
-                                            <select>
-                                                <option>administrator</option>
-                                                <option>edytor</option>
-                                                <option>użytkownik</option>
-                                            </select>
-                                        </div>
-                                        <div class="member add-member popup-open">
-                                            <i class="fas fa-user-plus"></i> Dodaj uczestnika
-                                        </div>
-                                    </div>
-                                    <div class="form-actions">
-                                        <a href="#" class="cancel">Anuluj</a>
-                                        <div class="button project-save"><i class="fas fa-save"></i> Zapisz</div>
-                                    </div>
-                                </form>
+                            <td colspan="3">
+                                <form action="" method="post">
+                {% csrf_token %}
+               
+                {% for field in form1 %}
+                    <div class="field">
+                        <br><label for="{{ field.id_for_label }}" class="label">{{ field.html_name }}</label><br>
+                        {{ field }}
+                    
+                    </div>
+                {% endfor %}
+                <br><br><br>
+                <input type="submit" value="dodaj" class="button1">
+            </form>
                             </td>
                         </tr>
+                        
+
+                            {% endfor %}
+
+                            {% endblock content %} 
+
                         <tr id="project-2" class="project">
                             <td><a class="project-name" href="#">Dolor sit amet</a></td>
                             <td>
@@ -115,56 +105,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr id="edit-project-2" class="project-edit">
-                            <td colspan="5">
-                                <form>
-                                    <div class="form-field">
-                                        <label>Nazwa projektu</label>
-                                        <input type="text" value="Dolor sit amet">
-                                    </div>
-                                    <label>Członkowie</label>
-                                    <div class="members">
-                                        <div class="member">
-                                            <div class="member-remove"><i class="fas fa-times"></i></div>
-                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
-                                            <span>Imię i nazwisko</span>
-                                            <select>
-                                                <option>administrator</option>
-                                                <option>edytor</option>
-                                                <option>użytkownik</option>
-                                            </select>
-                                        </div>
-                                        <div class="member">
-                                            <div class="member-remove"><i class="fas fa-times"></i></div>
-                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
-                                            <span>Imię i nazwisko</span>
-                                            <select>
-                                                <option>administrator</option>
-                                                <option>edytor</option>
-                                                <option>użytkownik</option>
-                                            </select>
-                                        </div>
-                                        <div class="member">
-                                            <div class="member-remove"><i class="fas fa-times"></i></div>
-                                            <img src="{% static 'user/img/placeholder.png' %}" alt="Imię i nazwisko">
-                                            <span>Imię i nazwisko</span>
-                                            <select>
-                                                <option>administrator</option>
-                                                <option>edytor</option>
-                                                <option>użytkownik</option>
-                                            </select>
-                                        </div>
-                                        <div class="member add-member popup-open">
-                                            <i class="fas fa-user-plus"></i> Dodaj uczestnika
-                                        </div>
-                                    </div>
-                                    <div class="form-actions">
-                                        <a href="#" class="cancel">Anuluj</a>
-                                        <div class="button project-save"><i class="fas fa-save"></i> Zapisz</div>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
+
+
                     </tbody>                
                 </table>
             </div>
