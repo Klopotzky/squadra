@@ -5,7 +5,7 @@
 # </WARNING>
 
 # <DOCKER_FROM>
-FROM debian:8.7
+FROM python:3
 # </DOCKER_FROM>
 
 # <NPM>
@@ -15,8 +15,9 @@ FROM debian:8.7
 # </BOWER>
 
 # <PYTHON>
-ENV PIP_INDEX_URL=${PIP_INDEX_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/aldryn-baseproject/+simple/} \
-    WHEELSPROXY_URL=${WHEELSPROXY_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/aldryn-baseproject/}
+ENV PYTHONUNBUFFERED=1
+# ENV PIP_INDEX_URL=${PIP_INDEX_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/aldryn-baseproject/+simple/} \
+#    WHEELSPROXY_URL=${WHEELSPROXY_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/aldryn-baseproject/}
 COPY requirements.* /squadra/
 COPY addons-dev /squadra/addons-dev/
 RUN pip install \
