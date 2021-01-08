@@ -11,11 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-# import aldryn_addons.settings
-# aldryn_addons.settings.load(locals())
-
-# from decouple import config
-# from dj_database_url import parse as dburl
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,7 +26,8 @@ ALLOWED_HOSTS = [
     'squadra.com.pl',
     'www.squadra,com',
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
+    '0.0.0.0'
 ]
 
 # Application definition
@@ -75,7 +72,7 @@ if DEBUG is False:
     SECURE_BROWSER_XSS_FILTER = True
     SESSION_COOKIE_SECURE = True
     X_FRAME_OPTIONS = 'DENY'
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT') != "False"
     SECURE_HSTS_SECONDS = 17068000  # > 6 months (197 days)
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
@@ -87,6 +84,7 @@ else:
     SECURE_SSL_REDIRECT = False
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
     SECURE_HSTS_PRELOAD = False
+
 
 FILE_UPLOAD_HANDLERS = [
     "django.core.files.uploadhandler.MemoryFileUploadHandler",
@@ -116,18 +114,20 @@ WSGI_APPLICATION = 'squadra_main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-# DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+# przed zmiana # DATABASES = {
+# przed zmiana #     'default': {
+# przed zmiana #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+# przed zmiana #         'NAME': 'postgres',
+# przed zmiana #         'USER': 'postgres',
+# przed zmiana #         'PASSWORD': 'postgres',
+# przed zmiana #         'HOST': 'db',
+# przed zmiana #         'PORT': '5432',
+# przed zmiana #     }
+# przed zmiana # }
+
+DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite://:memory:')
+
+DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

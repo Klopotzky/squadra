@@ -16,13 +16,9 @@ FROM python:3
 
 # <PYTHON>
 ENV PYTHONUNBUFFERED=1
-# ENV PIP_INDEX_URL=${PIP_INDEX_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/aldryn-baseproject/+simple/} \
-#    WHEELSPROXY_URL=${WHEELSPROXY_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/aldryn-baseproject/}
-COPY requirements.* /squadra/
-COPY addons-dev /squadra/addons-dev/
-RUN pip install \
-        --no-index --no-deps \
-        --requirement requirements.urls
+WORKDIR /squadra
+COPY . /squadra
+RUN pip install -r requirements.txt
 # </PYTHON>
 
 # <SOURCE>
@@ -35,3 +31,15 @@ COPY . /squadra
 # <STATIC>
 RUN DJANGO_MODE=build python manage.py collectstatic --noinput
 # </STATIC>
+
+CMD gunicorn --bind=0.0.0.0:9876 --forwarded-allow-ips="*" squadra.wsgi
+
+# *************************************************************************
+# potrzebne komendy / DOCKER DESTOP
+
+# docker-compose build
+# docker-compose down
+
+# docker-compose run web python manage.py migrate
+# docker-compose run web python manage.py createsuperuser
+# docker-compose up

@@ -71,7 +71,7 @@ whitenoise==5.2.0
 boto3==1.14.49
 
 # the database
-psycopg2 # ==2.8.6
+psycopg2==2.8.6
 
 # the gateway server
 gunicorn==20.0.4
