@@ -19,8 +19,7 @@ ENV PIP_INDEX_URL=${PIP_INDEX_URL:-https://wheels.aldryn.net/v1/aldryn-extras+py
     WHEELSPROXY_URL=${WHEELSPROXY_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/aldryn-baseproject/}
 COPY requirements.* /squadra/
 COPY addons-dev /squadra/addons-dev/
-RUN pip-reqs resolve && \
-    pip install \
+RUN pip install \
         --no-index --no-deps \
         --requirement requirements.urls
 # </PYTHON>
