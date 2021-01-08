@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+<<<<<<< HEAD
 
 """Django's command-line utility for administrative tasks."""
 import os
@@ -20,3 +21,11 @@ def main():
 
 if __name__ == '__main__':
     main()
+=======
+import os
+from aldryn_django import startup
+
+
+if __name__ == "__main__":
+    startup.manage(path=os.path.dirname(os.path.abspath(__file__)))
+>>>>>>> 8df0496d07d81875516d9350a867ae7830143c26

@@ -15,6 +15,7 @@ FROM divio/base:4.18-py3.6-slim-stretch
 # </BOWER>
 
 # <PYTHON>
+<<<<<<< HEAD
 # z divio # ENV PIP_INDEX_URL=${PIP_INDEX_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/${WHEELS_PLATFORM:-aldryn-baseproject-py3}/+simple/} \
     # z divio # WHEELSPROXY_URL=${WHEELSPROXY_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/${WHEELS_PLATFORM:-aldryn-baseproject-py3}/}
 # z divio # COPY requirements.* /app/
@@ -34,6 +35,21 @@ COPY . /squadra/
 
 # <SOURCE>
 COPY squadra_main /app
+=======
+ENV PIP_INDEX_URL=${PIP_INDEX_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/${WHEELS_PLATFORM:-aldryn-baseproject-py3}/+simple/} \
+    WHEELSPROXY_URL=${WHEELSPROXY_URL:-https://wheels.aldryn.net/v1/aldryn-extras+pypi/${WHEELS_PLATFORM:-aldryn-baseproject-py3}/}
+COPY requirements.* /app/
+COPY addons-dev /app/addons-dev/
+RUN pip-reqs compile && \
+    pip-reqs resolve && \
+    pip install \
+        --no-index --no-deps \
+        --requirement requirements.urls
+# </PYTHON>
+
+# <SOURCE>
+COPY . /app
+>>>>>>> 8df0496d07d81875516d9350a867ae7830143c26
 # </SOURCE>
 
 # <GULP>
