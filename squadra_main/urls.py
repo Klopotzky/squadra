@@ -18,13 +18,10 @@ from django.urls import path, include
 from addProject import views as addProjectViews
 from user import views as user_views
 
-from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import views as auth_view
-
-# from aldryn_django.utils import i18n_patterns
-# import aldryn_addons.urls
 
 
 urlpatterns = [
@@ -43,9 +40,3 @@ urlpatterns = [
     path('chat/', include('chat.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
-
-# + aldryn_addons.urls.patterns() + i18n_patterns(
-#     # add your own i18n patterns here
-#     *aldryn_addons.urls.i18n_patterns()  # MUST be the last entry!
-# )
-

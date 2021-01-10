@@ -1,18 +1,6 @@
-# <WARNING>
-# Everything within sections like <TAG> is generated and can
-# be automatically replaced on deployment. You can disable
-# this functionality by simply removing the wrapping tags.
-# </WARNING>
-
 # <DOCKER_FROM>
 FROM python:3
 # </DOCKER_FROM>
-
-# <NPM>
-# </NPM>
-
-# <BOWER>
-# </BOWER>
 
 # <PYTHON>
 ENV PYTHONUNBUFFERED=1
@@ -25,21 +13,47 @@ RUN pip install -r requirements.txt
 COPY . /squadra
 # </SOURCE>
 
-# <GULP>
-# </GULP>
-
 # <STATIC>
-RUN DJANGO_MODE=build python manage.py collectstatic --noinput
+# RUN DJANGO_MODE=build python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 # </STATIC>
 
-CMD gunicorn --bind=0.0.0.0:9876 --forwarded-allow-ips="*" squadra.wsgi
+EXPOSE 8001 8001
+
+CMD gunicorn --bind=0.0.0.0:8001 --forwarded-allow-ips="*" squadra.wsgi
 
 # *************************************************************************
 # potrzebne komendy / DOCKER DESTOP
+# *************************************************************************
 
-# docker-compose build
-# docker-compose down
+# docker-compose build          : buduje volume i kontenery
+# docker-compose down           : zatrzymuje wszystkie kontenery
 
-# docker-compose run web python manage.py migrate
-# docker-compose run web python manage.py createsuperuser
+# docker exec -it squadra_web_1 python manage.py i_tu_to_co_chcę_wywołać
+# makemigrations, migrate, createsuperuser
+
 # docker-compose up
+# docker logs squadra_web_1
+# docker-compose up db          : podnosi odpowiedni kontener "db"
+# docker-compose up -d web      : podnosi w tle (-d) odpowiedni kontener "web"
+
+# docker-compose ps             : pokazuje kontenery u ich status
+# docker-compose logs           : pokazuje wszystkie logi
+
+# docker restart squadra_web_1  : restart kontenera
+# docker volume ls              : pokazuje wszystkie volume
+# docker volume prune           : usuwa wszystkie nieuzywane volume
+# docker images -a              : pokazuje wszystkie obrazy
+# docker image prune            : usuwa wszystkie 'zwisajace' obrazy
+
+# docker rm                     : usuwa
+
+# *************************************************************************
+# odpalanie dockera
+# *************************************************************************
+#
+# docker-compose build
+# docker-compose up -d db
+# docker-compose up -d web
+# docker exec -it squadra_web_1 python manage.py migrate
+# docker exec -it squadra_web_1 python manage.py createsuperuser

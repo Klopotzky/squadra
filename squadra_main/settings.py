@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'bootstrapform',
     'editor',
     'user',
     'ckeditor',
@@ -47,13 +45,6 @@ INSTALLED_APPS = [
     'chat',
     'workflow',
 ]
-
-INSTALLED_ADDONS = [
-    'aldryn-addons',
-    'aldryn-django',
-    'aldryn-sso',
-]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,7 +63,7 @@ if DEBUG is False:
     SECURE_BROWSER_XSS_FILTER = True
     SESSION_COOKIE_SECURE = True
     X_FRAME_OPTIONS = 'DENY'
-    SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT') != "False"
+    SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT') != "True"
     SECURE_HSTS_SECONDS = 17068000  # > 6 months (197 days)
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
@@ -84,7 +75,6 @@ else:
     SECURE_SSL_REDIRECT = False
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
     SECURE_HSTS_PRELOAD = False
-
 
 FILE_UPLOAD_HANDLERS = [
     "django.core.files.uploadhandler.MemoryFileUploadHandler",
@@ -114,20 +104,21 @@ WSGI_APPLICATION = 'squadra_main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# przed zmiana # DATABASES = {
-# przed zmiana #     'default': {
-# przed zmiana #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-# przed zmiana #         'NAME': 'postgres',
-# przed zmiana #         'USER': 'postgres',
-# przed zmiana #         'PASSWORD': 'postgres',
-# przed zmiana #         'HOST': 'db',
-# przed zmiana #         'PORT': '5432',
-# przed zmiana #     }
-# przed zmiana # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',  # dla dockera potrzebna zamiana na 'db', lokalnie na kompie 'localhost'
+        'PORT': '5432',
+    }
+}
 
-DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite://:memory:')
-
-DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
+# old # DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite://:memory:')
+# old # postgres://postgres:postgres@localhost:5432/postgres
+# DATABASE_URL = os.environ.get('DATABASE_URL', 'postgres://postgres:postgres@localhost:5432/postgres')
+# DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
