@@ -14,7 +14,6 @@ COPY . /squadra
 # </SOURCE>
 
 # <STATIC>
-# RUN DJANGO_MODE=build python manage.py collectstatic --noinput
 RUN python manage.py collectstatic --noinput
 # </STATIC>
 
@@ -26,18 +25,17 @@ CMD gunicorn --bind=0.0.0.0:8001 --forwarded-allow-ips="*" squadra.wsgi
 # potrzebne komendy / DOCKER DESTOP
 # *************************************************************************
 
-# docker-compose build          : buduje volume i kontenery
+# docker-compose build          : buduje obrazy kontenerow
 # docker-compose down           : zatrzymuje wszystkie kontenery
 
 # docker exec -it squadra_web_1 python manage.py i_tu_to_co_chcę_wywołać
 # makemigrations, migrate, createsuperuser
 
-# docker-compose up
-# docker logs squadra_web_1
+# docker logs squadra_web_1     : pokazuje logi wybranego okntenera
 # docker-compose up db          : podnosi odpowiedni kontener "db"
 # docker-compose up -d web      : podnosi w tle (-d) odpowiedni kontener "web"
 
-# docker-compose ps             : pokazuje kontenery u ich status
+# docker-compose ps             : pokazuje kontenery i ich status
 # docker-compose logs           : pokazuje wszystkie logi
 
 # docker restart squadra_web_1  : restart kontenera
